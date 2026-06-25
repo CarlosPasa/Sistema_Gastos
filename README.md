@@ -272,3 +272,11 @@ Se siguen principios de:
 # Autor
 
 Desarrollado como proyecto de portafolio utilizando Laravel 12 y Docker.
+
+
+Demo online: https://sistema-gastos-7olv.onrender.com/
+Usuario demo: admin@gmail.com
+Password: 12345678
+
+Deploy: Render
+Base de datos: PostgreSQL
