@@ -14,6 +14,9 @@ echo "Base de datos lista."
 echo "Ejecutando migraciones..."
 php artisan migrate --force
 
+echo "Ejecutando seeders temporalmente..."
+php artisan db:seed --force
+
 echo "Generando cachés de producción..."
 php artisan config:cache
 php artisan route:cache
