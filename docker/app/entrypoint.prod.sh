@@ -1,15 +1,15 @@
 #!/bin/sh
 set -e
 
-echo "Esperando a MySQL..."
+echo "Esperando a base de datos..."
 
-until php -r "new PDO('mysql:host=${DB_HOST};dbname=${DB_DATABASE}', '${DB_USERNAME}', '${DB_PASSWORD}');" >/dev/null 2>&1
+until php -r "new PDO('mysql:host=${DB_HOST};port=${DB_PORT};dbname=${DB_DATABASE}', '${DB_USERNAME}', '${DB_PASSWORD}');" >/dev/null 2>&1
 do
-    echo "MySQL no está listo todavía..."
+    echo "Base de datos no está lista todavía..."
     sleep 3
 done
 
-echo "MySQL listo."
+echo "Base de datos lista."
 
 echo "Ejecutando migraciones..."
 php artisan migrate --force
@@ -20,4 +20,7 @@ php artisan route:cache
 php artisan view:cache
 
 echo "Iniciando PHP-FPM..."
-exec php-fpm -F
+php-fpm -D
+
+echo "Iniciando Nginx..."
+nginx -g "daemon off;"
