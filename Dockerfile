@@ -1,3 +1,18 @@
+FROM node:22-alpine AS frontend
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm install
+
+COPY resources ./resources
+COPY vite.config.* ./
+COPY tailwind.config.* ./
+COPY postcss.config.* ./
+
+RUN npm run build
+
+
 FROM php:8.3-fpm
 
 WORKDIR /var/www/html
@@ -15,15 +30,12 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install pdo_mysql mbstring zip exif pcntl bcmath gd
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-COPY --from=node:22-alpine /usr/local/bin/node /usr/local/bin/node
-COPY --from=node:22-alpine /usr/local/lib/node_modules /usr/local/lib/node_modules
-
-RUN ln -s /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm
 
 COPY . .
 
+COPY --from=frontend /app/public/build ./public/build
+
 RUN composer install --no-dev --optimize-autoloader
-RUN npm install && npm run build
 
 COPY docker/nginx/render.conf /etc/nginx/sites-available/default
 COPY docker/app/entrypoint.prod.sh /usr/local/bin/entrypoint.prod.sh
