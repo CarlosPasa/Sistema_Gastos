@@ -8,7 +8,8 @@ class CategoryService
 {
     public function getAll()
     {
-        return Category::latest()
+        return Category::where('user_id', auth()->id())
+            ->latest()
             ->paginate(10);
     }
 
