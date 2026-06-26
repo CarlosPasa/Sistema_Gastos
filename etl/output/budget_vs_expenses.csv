@@ -1,0 +1,3 @@
+﻿category_id,category_name,period,budget_amount,spent_amount,available_amount,usage_percentage,status
+3,Moto,2026-06,120.0,34.53,85.47,28.78,Dentro del presupuesto
+1,Casa,2026-06,1600.0,1483.18,116.81999999999994,92.7,Dentro del presupuesto

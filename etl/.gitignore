@@ -1,0 +1,8 @@
+.gitignore# ETL
+etl/venv/
+etl/output/
+etl/.env
+
+# Python
+__pycache__/
+*.pyc

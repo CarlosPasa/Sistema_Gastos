@@ -1,0 +1,6 @@
+﻿id,description,amount,expense_date,year,month,month_name,quarter,day,category_id,category_name
+5,Gasolina,34.53,2026-06-01,2026,6,June,2,1,3,Moto
+4,Zapatillas para pa,41.94,2026-06-01,2026,6,June,2,1,5,Compromisos
+3,Exprimidor eléctrico,39.9,2026-06-01,2026,6,June,2,1,9,Compras casa
+2,Mandos de NS2,114.9,2026-06-01,2026,6,June,2,1,7,Compras para mi
+1,Cuota de Casa,1483.18,2026-06-25,2026,6,June,2,25,1,Casa
