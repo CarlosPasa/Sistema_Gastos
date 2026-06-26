@@ -41,9 +41,11 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        $this->categoryService->create(
-            $request->validated()
-        );
+        $data = $request->validated();
+
+        $data['user_id'] = auth()->id();
+
+        $this->categoryService->create($data);
 
         return redirect()
             ->route('categories.index')
